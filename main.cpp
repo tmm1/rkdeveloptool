@@ -51,6 +51,7 @@ void usage()
 	printf("WriteLBA:\t\twl  <BeginSec> <File>\r\n");
 	printf("WriteLBA:\t\twlx  <PartitionName> <File>\r\n");
 	printf("WriteGPT:\t\tgpt <gpt partition table>\r\n");
+	printf("PrintParameter:\t\tprm\r\n");
 	printf("WriteParameter:\t\tprm <parameter>\r\n");
 	printf("PrintPartition:\t\tppt \r\n");
 	printf("EraseFlash:\t\tef \r\n");
@@ -3171,6 +3172,8 @@ bool handle_command(int argc, char* argv[], CRKScan *pScan)
 			string strParameter;
 			strParameter = argv[2];
 			bSuccess = write_parameter(dev, (char *)strParameter.c_str());
+		} else if (argc == 1) {
+			bSuccess = print_parameter(dev);
 		} else
 			printf("Parameter of [PRM] command is invalid, please check help!\r\n");
 	} else if(strcmp(strCmd.c_str(), "UL") == 0) {
